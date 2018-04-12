@@ -1,0 +1,72 @@
+<meta charset="utf-8" emacsmode="-*- markdown -*-"><link rel="stylesheet" href="https://casual-effects.com/markdeep/latest/apidoc.css?">
+
+# Weekly Programmer - Week 2
+
+## Sum of Many Primes
+
+From [Weekly Programmer Challenges](./index.html)
+
+## Description
+
+The sum of the primes below 10 is `2 + 3 + 5 + 7 = 17`.
+
+What is the sum of the primes less than ten million?
+
+## Challenge Description
+
+Your challenge today is to write a program that computes all the primes less
+than ten million and produce the sum of those primes.
+
+Calculating what numbers are prime is quite tricky, but a sufficiently clever
+algorithm should be able to produce the answer required for this challenge in
+ten seconds or less.
+
+## Bonus Challenge
+
+1) Finding the primes less than ten million in less than ten seconds is
+impressive. Can you find the primes less than a hundred million in less than
+twenty? What about a billion? How far can you go before your algorithm fails to
+complete the challenge in less than a minute?
+
+2) Finding lists of primes online is easy, can you write a program to consume
+such a list and produce on demand the sum of all primes under `n`? (where `n` is
+within the range of the list used)
+
+## Expected Output
+
+The expected sum is: `3203324994356`
+
+## Example Solution
+
+Language: Javascript
+
+```javascript
+const sieve = (limit) => {
+    primegrid = new Array(limit + 1).fill(1)
+    primegrid[0] = 0
+    primegrid[1] = 0
+    K = Math.ceil(Math.sqrt(limit))
+    for (i = 2; i < K; i++) {
+        if (primegrid[i] !== 1) {
+            continue;
+        }
+        for (j = i * i; j <= limit; j += i) {
+            primegrid[j] = 0;
+        }
+    }
+    return primegrid
+        .map((isprime, num) => isprime === 1 ? num : undefined)
+        .filter(a => a)
+}
+console.log(sieve(1e7).reduce((acc, prime) => acc + prime, 0))
+```
+
+## Solution Explanation
+
+The core of this solution is an implementation of the [Sieve of Eratosthenes](https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes)
+
+Once the sieve produces the primes it is simply a matter of adding them
+together. This example uses Array.reduce to accomplish this addition
+
+<script>markdeepOptions={tocStyle:'medium'};</script>
+<!-- Markdeep: --><script src="https://casual-effects.com/markdeep/latest/markdeep.min.js?"></script>
