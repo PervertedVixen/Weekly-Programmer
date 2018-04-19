@@ -5,5 +5,8 @@
             "link",
             "script"
         ]
+    },
+    "MD013": {
+        "line_length": 120
     }
 }

@@ -1,0 +1,129 @@
+<meta charset="utf-8"><link rel="stylesheet" href="markdeep/apidoc.css?">
+
+Weekly Programmer - Week 3
+==========================
+
+Making Change
+-------------
+
+From [Weekly Programmer Challenges](./index.html)
+
+Description
+-----------
+
+You own a nice tiny mini-market that sells candies to children. You need to know what change to give back to those
+little cute creatures and it happens you don't know basic math because when you were a child you were always eating
+candies and did not study very well. So you need some help from a little tool that tell you if you can.
+
+Challenge Description
+---------------------
+
+Write a program that calculates change and outputs the minimum amount of coins needed to produce the required change.
+
+Your program should receive as input the values of coins available to use, and the value of change needed as a decimal
+amount of dollars. If the exact amount is not satisfiable your program should round up to the next highest satisfiable
+value and output the coins needed for that.
+
+Your program should output the coins required to give the correct change.
+
+For example:
+
+Input:
+
+```text
+.5 .25 .1 .05 .01
+1.24
+```
+
+Output:
+
+```text
+.5 .5 .1 .1 .01 .01 .01 .01
+```
+
+Challenge Inputs
+----------------
+
+```text
+1 .5 .25 .1 .05 .01
+4.99
+```
+
+```text
+1 .5 .25 .1 .05
+4.89
+```
+
+```text
+1 .5 .25 .1 .05 .01
+.66
+```
+
+```text
+5 2 .5 .25 .1 .05
+16.01
+```
+
+```text
+1 .5 .25 .1
+.3
+```
+
+Example Solution
+----------------
+
+```javascript
+const makeChange = (target, coins) => {
+    const factor = Math.pow(10, coins.concat(target)
+        .map(x => /\d+(.(\d*))?/.exec(x)[2] || '')
+        .reduce((a, v) => Math.max(v.length, a), 0));
+    target = Math.round(target * factor);
+    coins = coins.map(x => Math.round(x * factor));
+    const values = [0];
+    let i = 0;
+    for (; i < target; i++) {
+        if (i in values) {
+            coins.forEach(coin => {
+                const next = i + coin;
+                if (!(next in values)) {
+                    values[next] = coin
+                }
+            });
+        }
+    }
+    i = target;
+    while (!(i in values)) {
+        i++;
+    }
+    const solution = [];
+    for (; i > 0; i -= values[i]) {
+        solution[i - 1] = values[i];
+    }
+    return solution.filter(value => value)
+        .map(coin => coin / factor)
+        .sort((a, b) => b - a)
+};
+console.log(makeChange(1.24, [.5, .25, .1, .05, .01,]));
+```
+
+Solution Explanation
+--------------------
+
+This solution applies a breadcrumb strategy for backtracking. First the values of the coins are scaled up to make the
+values integer and the scaling factor is saved. This allows the algorithm to work only with integers and scale the
+result back down to decimals at the end.
+
+Next a list of reachable coin values is created. Starting at `0` the available coins are added to that sum and their
+numeric value is stored at the new sum. If the new sum already has a value stored it is preserved as that means a
+shorter path to the reachable value was already produced. This process is repeated for every reachable value up to the
+target amount of change.
+
+This storage allows the single list of values to contain not only which values are reachable but starting from any given
+value there is a trail of breadcrumbs leading back to `0` which gives the shortest path, and thus the smallest number of
+coins needed to produce the needed sum.
+
+Once this list is generated the smallest reachable value that is at least as great as the needed sum is chosen and the
+trail of breadcrumbs is walked back to `0`. This list of coins is then sorted largest to smallest and reduced by the
+previously stored factor to give the result in the original input units.
+
+<!-- Markdeep: --><script src="markdeep/markdeep.min.js?"></script>

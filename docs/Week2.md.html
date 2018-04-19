@@ -1,18 +1,22 @@
-<meta charset="utf-8" emacsmode="-*- markdown -*-"><link rel="stylesheet" href="https://casual-effects.com/markdeep/latest/apidoc.css?">
+<meta charset="utf-8"><link rel="stylesheet" href="markdeep/apidoc.css?">
 
-# Weekly Programmer - Week 2
+Weekly Programmer - Week 2
+==========================
 
-## Sum of Many Primes
+Sum of Many Primes
+------------------
 
 From [Weekly Programmer Challenges](./index.html)
 
-## Description
+Description
+-----------
 
 The sum of the primes below 10 is `2 + 3 + 5 + 7 = 17`.
 
 What is the sum of the primes less than ten million?
 
-## Challenge Description
+Challenge Description
+---------------------
 
 Your challenge today is to write a program that computes all the primes less
 than ten million and produce the sum of those primes.
@@ -21,7 +25,8 @@ Calculating what numbers are prime is quite tricky, but a sufficiently clever
 algorithm should be able to produce the answer required for this challenge in
 ten seconds or less.
 
-## Bonus Challenge
+Bonus Challenge
+---------------
 
 1) Finding the primes less than ten million in less than ten seconds is
 impressive. Can you find the primes less than a hundred million in less than
@@ -29,14 +34,16 @@ twenty? What about a billion? How far can you go before your algorithm fails to
 complete the challenge in less than a minute?
 
 2) Finding lists of primes online is easy, can you write a program to consume
-such a list and produce on demand the sum of all primes under `n`? (where `n` is
+such a list and produce on demand the sum of all primes under $n$? (where $n$ is
 within the range of the list used)
 
-## Expected Output
+Expected Output
+---------------
 
 The expected sum is: `3203324994356`
 
-## Example Solution
+Example Solution
+----------------
 
 Language: Javascript
 
@@ -61,12 +68,18 @@ const sieve = (limit) => {
 console.log(sieve(1e7).reduce((acc, prime) => acc + prime, 0))
 ```
 
-## Solution Explanation
+Solution Explanation
+--------------------
 
 The core of this solution is an implementation of the [Sieve of Eratosthenes](https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes)
 
-Once the sieve produces the primes it is simply a matter of adding them
-together. This example uses Array.reduce to accomplish this addition
+The basic Sive uses an array with indexes up to (and including) $n$ filled with `1`s to indicate primes. `0` and `1` are
+marked as non prime and the Sieve process indexes from `2` up to $\sqrt{n}$. We are able to stop processing at $\sqrt{n}$
+because as we process each $index$ the smallest non-marked composite number that is a multiple of a prime is always the
+square of the prime because if it was smaller than that another, smaller, prime would have already marked it as composite.
 
-<script>markdeepOptions={tocStyle:'medium'};</script>
-<!-- Markdeep: --><script src="https://casual-effects.com/markdeep/latest/markdeep.min.js?"></script>
+For each $index$ in this range of $n$, if the value is `0` $index$ is not prime and should be skipped. In the case that
+$index$ has the value `1` the number is prime, all multiples of $index$ starting at $index^2$ are marked as not prime.
+Once the sieve completes the grid is transformed into a list of prime numbers and returned to be summed.
+
+<!-- Markdeep: --><script src="markdeep/markdeep.min.js?"></script>
