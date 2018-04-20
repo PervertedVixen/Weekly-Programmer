@@ -1,0 +1,110 @@
+<meta charset="utf-8"><link rel="stylesheet" href="markdeep/apidoc.css?">
+
+Weekly Programmer - Week 4
+==========================
+
+Reverse polish calculator
+-------------------------
+
+From [Weekly Programmer Challenges](./index.html)
+
+Description
+-----------
+
+Write a program that outputs the first recurring character in a string.
+
+Formal Inputs & Outputs
+-----------------------
+
+### Input Description
+
+A string of alphabetical characters. Example:
+
+```text
+ABCDEBC
+```
+
+### Output description
+
+The first recurring character from the input. From the above example:
+
+```text
+B
+```
+
+Alternatively provide additional info in the output, such as this example that providdes the solution to the basic
+problem and the bonus as well.
+
+```text
+PXLJOUDJVZGQHLBHGXIW => `J`@3 (`X`[16])
+```
+
+This shows the first repeatching character is `J` at index 3 (zero based because that's the only correct way) and the
+character with the longest recurrence is `X` with a gap of 16 characters
+
+Challenge Inputs
+----------------
+
+```text
+the quick brown fox jumps over the lazy dog
+```
+
+```text
+IKEUNFUVFV
+```
+
+```text
+PXLJOUDJVZGQHLBHGXIW
+```
+
+```text
+*l1J?)yn%R[}9~1"=k7]9;0[$
+```
+
+```text
+156248267293222
+```
+
+```text
+0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz
+```
+
+Bonus Problem
+-------------
+
+Instead of outputting the first recurring character output the character
+with the largest gap between an occurrence and next occurrence.
+
+Example Solution
+----------------
+
+```javascript
+const mapRecurrences = input => {
+    const map = {};
+    let first = null;
+    let position = -1;
+    let char = null;
+    let gap = -1;
+    `${input}`.split('').forEach((c, i) => {
+        if (map[c]) {
+            if (!first) {
+                first = c;
+                position = map[c];
+            }
+            if (i - map[c] > gap) {
+                char = c;
+                gap = i - map[c];
+            }
+        }
+        map[c] = i;
+    });
+    return { first, position, char, gap, input };
+};
+
+const processInputs = input => {
+    const result = mamapRecurrences(input);
+    console.log(`${r.str} => \`${r.first}\`@${r.position} (\`${r.char}\`[${r.gap}])`);
+};
+```
+
+<!-- Markdeep: --><script src="markdeep/markdeep.min.js?"></script>
