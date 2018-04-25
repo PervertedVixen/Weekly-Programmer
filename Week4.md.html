@@ -1,20 +1,17 @@
 <meta charset="utf-8"><link rel="stylesheet" href="markdeep/apidoc.css?">
+<title>Week 4</title>
 
-Weekly Programmer - Week 4
-==========================
+# Weekly Programmer - Week 4
 
-Recurring characters
---------------------
+## Recurring characters
 
 From [Weekly Programmer Challenges](./index.html)
 
-Description
------------
+## Description
 
 Write a program that outputs the first recurring character in a string.
 
-Formal Inputs & Outputs
------------------------
+## Formal Inputs & Outputs
 
 ### Input Description
 
@@ -42,8 +39,7 @@ PXLJOUDJVZGQHLBHGXIW => `J`@3 (`X`[16])
 This shows the first repeatching character is `J` at index 3 (zero based because that's the only correct way) and the
 character with the longest recurrence is `X` with a gap of 16 characters
 
-Challenge Inputs
-----------------
+## Challenge Inputs
 
 ```text
 the quick brown fox jumps over the lazy dog
@@ -69,14 +65,12 @@ PXLJOUDJVZGQHLBHGXIW
 0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz
 ```
 
-Bonus Problem
--------------
+## Bonus Problem
 
 Instead of outputting the first recurring character output the character
 with the largest gap between an occurrence and next occurrence.
 
-Example Solution
-----------------
+## Example Solution
 
 ```javascript
 const calculateRecurrence = (str) => {

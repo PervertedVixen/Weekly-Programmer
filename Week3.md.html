@@ -1,22 +1,19 @@
 <meta charset="utf-8"><link rel="stylesheet" href="markdeep/apidoc.css?">
+<title>Week 3</title>
 
-Weekly Programmer - Week 3
-==========================
+# Weekly Programmer - Week 3
 
-Making Change
--------------
+## Making Change
 
 From [Weekly Programmer Challenges](./index.html)
 
-Description
------------
+## Description
 
 You own a nice tiny mini-market that sells candies to children. You need to know what change to give back to those
 little cute creatures and it happens you don't know basic math because when you were a child you were always eating
 candies and did not study very well. So you need some help from a little tool that tell you if you can.
 
-Challenge Description
----------------------
+## Challenge Description
 
 Write a program that calculates change and outputs the minimum amount of coins needed to produce the required change.
 
@@ -41,8 +38,7 @@ Output:
 .5 .5 .1 .1 .01 .01 .01 .01
 ```
 
-Challenge Inputs
-----------------
+## Challenge Inputs
 
 ```text
 1 .5 .25 .1 .05 .01
@@ -69,8 +65,7 @@ Challenge Inputs
 .3
 ```
 
-Example Solution
-----------------
+## Example Solution
 
 ```javascript
 const makeChange = (target, coins) => {
@@ -106,8 +101,7 @@ const makeChange = (target, coins) => {
 console.log(makeChange(1.24, [.5, .25, .1, .05, .01,]));
 ```
 
-Solution Explanation
---------------------
+## Solution Explanation
 
 This solution applies a breadcrumb strategy for backtracking. First the values of the coins are scaled up to make the
 values integer and the scaling factor is saved. This allows the algorithm to work only with integers and scale the
