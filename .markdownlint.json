@@ -1,6 +1,6 @@
 {
-    "MD003":{
-        "style": "setext_with_atx"
+    "MD003": {
+        "style": "atx"
     },
     "MD013": {
         "line_length": 120
@@ -9,7 +9,8 @@
         "allowed_elements": [
             "meta",
             "link",
-            "script"
+            "script",
+            "title"
         ]
     }
 }

@@ -1,20 +1,18 @@
 <meta charset="utf-8"><link rel="stylesheet" href="markdeep/apidoc.css?">
 
-Weekly Programmer - Week 4
-==========================
+<title>Week 4</title>
 
-Reverse polish calculator
--------------------------
+# Weekly Programmer - Week 4
+
+## Recurring characters
 
 From [Weekly Programmer Challenges](./index.html)
 
-Description
------------
+## Description
 
 Write a program that outputs the first recurring character in a string.
 
-Formal Inputs & Outputs
------------------------
+## Formal Inputs & Outputs
 
 ### Input Description
 
@@ -42,8 +40,7 @@ PXLJOUDJVZGQHLBHGXIW => `J`@3 (`X`[16])
 This shows the first repeatching character is `J` at index 3 (zero based because that's the only correct way) and the
 character with the longest recurrence is `X` with a gap of 16 characters
 
-Challenge Inputs
-----------------
+## Challenge Inputs
 
 ```text
 the quick brown fox jumps over the lazy dog
@@ -69,23 +66,21 @@ PXLJOUDJVZGQHLBHGXIW
 0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz
 ```
 
-Bonus Problem
--------------
+## Bonus Problem
 
 Instead of outputting the first recurring character output the character
 with the largest gap between an occurrence and next occurrence.
 
-Example Solution
-----------------
+## Example Solution
 
 ```javascript
-const mapRecurrences = input => {
+const calculateRecurrence = (str) => {
     const map = {};
     let first = null;
     let position = -1;
     let char = null;
     let gap = -1;
-    `${input}`.split('').forEach((c, i) => {
+    `${str}`.split('').forEach((c, i) => {
         if (map[c]) {
             if (!first) {
                 first = c;
@@ -98,12 +93,7 @@ const mapRecurrences = input => {
         }
         map[c] = i;
     });
-    return { first, position, char, gap, input };
-};
-
-const processInputs = input => {
-    const result = mamapRecurrences(input);
-    console.log(`${r.str} => \`${r.first}\`@${r.position} (\`${r.char}\`[${r.gap}])`);
+    return { first, position, char, gap, str };
 };
 ```
 

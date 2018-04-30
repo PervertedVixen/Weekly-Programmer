@@ -1,0 +1,63 @@
+<meta charset="utf-8"><link rel="stylesheet" href="https://casual-effects.com/markdeep/latest/apidoc.css?">
+<title>Week 10</title>
+
+# Weekly Programmer - Week 10
+
+## The Battle Room
+
+From [Weekly Programmer Challenges](./index.html)
+
+## Description
+
+Write a program that calculates battle grids for the battle school. These battle grids are squares subdivided into a
+series of squares. Each sub square may be empty or it may contain a star. Each star may not border another star
+vertically, horizontally, or diagonally. Additionally every row and column of the battlegrid must contain the same
+number of stars. Your program should be capable of generating valid battle grids of a certain size and fill rate based
+on the inputs received.
+
+## Formal Inputs & Outputs
+
+### Input Description
+
+Input will be two positive integers.
+
+The first integer represents the primality of the grid, that is how many cells on a side the battle grid is. An input
+of `4` means the battlegrid a 4x4 grid.
+
+The second represents the fill rate, It is the number of stars that should be in each row and column. An input of `5`
+means that the battlegrid must have 5 stars in every row and every column.
+
+Example input:
+
+```text
+4, 1
+```
+
+### Output description
+
+Output a visualization of the battlegrid, or an error message if there is no valid battlegrid
+
+For example for the inputs `4, 1` you might output this grid:
+
+```text
++---+---+---+---+
+|   |   | * |   |
++---+---+---+---+
+| * |   |   |   |
++---+---+---+---+
+|   |   |   | * |
++---+---+---+---+
+|   | * |   |   |
++---+---+---+---+
+```
+
+## Challenge Inputs
+
+1) small grid: `6, 1`
+2) medium grid 1: `10, 2`
+3) medium grid 2: `15, 3`
+4) large grid: `32, 4`
+5) impossible grid 1: `4, 2`
+6) impossible grid 2: `3, 6`
+
+<!-- Markdeep: --><script src="markdeep/markdeep.min.js?"></script>

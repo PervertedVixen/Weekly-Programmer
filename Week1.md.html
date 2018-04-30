@@ -1,15 +1,13 @@
 <meta charset="utf-8"><link rel="stylesheet" href="markdeep/apidoc.css?">
+<title>Week 1</title>
 
-Weekly Programmer - Week 1
-==========================
+# Weekly Programmer - Week 1
 
-Baum-Sweet Sequence
--------------------
+## Baum-Sweet Sequence
 
 From [Weekly Programmer Challenges](./index.html)
 
-Description
------------
+## Description
 
 In mathematics, the Baum–Sweet sequence is an infinite automatic sequence of `0`s and `1`s defined by the rule:
 
@@ -30,16 +28,14 @@ consecutive `0`s of length `1`. When $n$ is `19611206`, $b_{19611206}$ is `0` be
 
 Because we find an odd length sequence of `0`s, $b_{19611206}$ is `0`.
 
-Challenge Description
----------------------
+## Challenge Description
 
 Your challenge today is to write a program that generates the Baum-Sweet sequence from 0 to some number $n$. For example,
 given `"20"` your program would emit:
 
 `1, 1, 0, 1, 1, 0, 0, 1, 0, 1, 0, 0, 1, 0, 0, 1, 1, 0, 0, 1, 0`
 
-Example Solution
-----------------
+## Example Solution
 
 Language: Javascript
 
@@ -49,8 +45,7 @@ const baumSweetSeq = n => new Array(n + 1).fill().map((_,n) => baumSweet(n));
 console.log(baumSweetSeq(20).join(', '));
 ```
 
-Solution Explanation
---------------------
+## Solution Explanation
 
 Breaking this down the core of the solution is the `baumSweet` function. This function takes a number and returns the
 baumsweet number for it. The conversion is performed via regular expression matching.
